@@ -1,17 +1,14 @@
-name: Product-Service CI/CD
+name: Store-Front CI/CD
 
 on:
   push:
     branches: [ main, master ]
-    paths:
-      - 'product-service/**'
   pull_request:
     branches: [ main, master ]
-    paths:
-      - 'product-service/**'
+  workflow_dispatch:  # Allows manual triggering
 
 env:
-  IMAGE_NAME: product-service
+  IMAGE_NAME: store-front
   REGISTRY: docker.io
 
 jobs:
@@ -50,10 +47,8 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
-        context: ./product-service
+        context: .  # Changed from ./store-front to . (root directory)
         push: ${{ github.event_name != 'pull_request' }}
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
-        cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:buildcache
-        cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:buildcache,mode=max
-
+        cache-
