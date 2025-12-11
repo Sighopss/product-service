@@ -15,7 +15,7 @@ RESTful API for product catalog management.
 - `GET /api/products/:id` - Get product by ID
 - `POST /api/products` - Create new product
 - `PUT /api/products/:id` - Update product
-- `DELETE /api/products/:id` - Delete product
+- `DELETE /api/products/:id` - Delete product..
 
 ## Local Development
 
@@ -82,4 +82,5 @@ curl -X PUT http://localhost:3001/api/products/product123 \
     "stock": 150
   }'
 ```
+
 
